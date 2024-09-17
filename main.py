@@ -1,6 +1,16 @@
 from managers.book_manager import BookManager
 from managers.user_manager import UserManager
 from managers.checkout_manager import CheckoutManager
+import logging
+
+# Configure the logging
+logging.basicConfig(
+    filename='library_management.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+
 
 def main_menu():
     """
@@ -10,6 +20,7 @@ def main_menu():
         str: The user's choice from the menu options.
     """
     headline = "Library Management System"
+    logging.info("Starting Library Management System.")
     print(f"\n{headline}\n{'=' * len(headline)}")
 
     print("1. Add User")
@@ -45,10 +56,12 @@ def main():
             if user_manager.authenticate_user(user_id, password):
                 checkout_manager.checkout_book(user_id)
             else:
+                logging.warning(f"Authentication failed for user {user_id}.")
                 print("Authentication failed. Check your user ID or password.")
         elif choice == '5':
             checkout_manager.checkin_book()
         elif choice == '6':
+            logging.info("Exiting Library Management System.")
             print("Exiting.")
             break
         else:

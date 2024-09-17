@@ -3,7 +3,7 @@
         "title": "The Great Gatsby",
         "author": "F. Scott Fitzgerald",
         "isbn": "9780743273565",
-        "is_checked_out": false
+        "is_checked_out": true
     },
     {
         "title": "1984",

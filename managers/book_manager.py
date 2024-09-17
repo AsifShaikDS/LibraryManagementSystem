@@ -1,5 +1,6 @@
 from models.book import Book
 from storage.storage import Storage
+import logging
 
 class BookManager:
     def __init__(self):
@@ -33,12 +34,14 @@ class BookManager:
 
         # First, check if the book with the given ISBN already exists
         if self.book_exists(isbn):
+            logging.warning(f"Attempt to add a book with existing ISBN {isbn}.")
             # If the ISBN exists, inform the user and stop the process
             print(f"A book with ISBN {isbn} already exists. Please use a different ISBN.")
             return
         
         # Ensure that all fields are provided, i.e., title, author, and ISBN
         if not title or not author or not isbn:
+            logging.error("All fields are required to add a book.")
             print("All fields are required. Please try again.")
             return
         
@@ -46,6 +49,7 @@ class BookManager:
         self.books.append(book)
         # Save the updated list of books to the JSON file
         self.save("books.json")
+        logging.info(f"Book '{title}' added successfully with ISBN {isbn}.")
         print(f"Book '{title}' added successfully.")
 
     def list_books(self):
@@ -55,6 +59,7 @@ class BookManager:
         # Loop through the list of books and print each one
         for book in self.books:
             print(book)
+        logging.info("Listed all books.")
 
     def list_available_books(self):
         """
@@ -65,6 +70,7 @@ class BookManager:
         """
         # Filter the list of books to only include those that are not checked out
         available_books = [book for book in self.books if not book.is_checked_out]
+        logging.info("Listed available books.")
         return available_books
 
     def save(self, filename):
@@ -76,3 +82,4 @@ class BookManager:
         """
         # Save the books data to the JSON file using the Storage utility class
         Storage.save_data(filename, self.books)
+        logging.info(f"Books saved to {filename}.")

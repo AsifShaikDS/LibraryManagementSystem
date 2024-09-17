@@ -1,0 +1,11 @@
+2024-09-17 19:02:21,372 - INFO - Starting Library Management System.
+2024-09-17 19:02:23,900 - INFO - Exiting Library Management System.
+2024-09-17 19:02:25,639 - INFO - Starting Library Management System.
+2024-09-17 19:02:35,912 - INFO - Exiting Library Management System.
+2024-09-17 19:02:42,968 - INFO - Starting Library Management System.
+2024-09-17 19:02:51,790 - INFO - User 1 authenticated successfully.
+2024-09-17 19:02:51,790 - INFO - Listed available books.
+2024-09-17 19:03:03,104 - INFO - Books saved to books.json.
+2024-09-17 19:03:03,105 - INFO - Book 9780743273565 checked out by user 1.
+2024-09-17 19:03:03,105 - INFO - Starting Library Management System.
+2024-09-17 19:03:10,781 - INFO - Exiting Library Management System.

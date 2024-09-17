@@ -2,6 +2,7 @@ from models.checkout import Checkout
 from managers.book_manager import BookManager
 from storage.storage import Storage
 from datetime import datetime
+import logging
 
 class CheckoutManager:
     def __init__(self):
@@ -52,6 +53,7 @@ class CheckoutManager:
                 Storage.save_data("checkouts.json", self.checkouts)
                 # Confirm to the user that the book has been checked out
                 print(f"Book {isbn} checked out by user {user_id}.")
+                logging.info(f"Book {isbn} checked out by user {user_id}.")
                 return
         
         # If the book is not available or doesn't exist, notify the user
@@ -88,8 +90,10 @@ class CheckoutManager:
                 self.book_manager.save("books.json")
                 Storage.save_data("checkouts.json", self.checkouts)
                 print(f"Book {isbn} checked in.")
+                logging.info(f"Book {isbn} checked in.")
+                
                 return
-        
+        logging.error(f"Book {isbn} was not checked out.")
         # If the book was not checked out or doesn't exist, notify the user
         print(f"Book {isbn} was not checked out.")
 
