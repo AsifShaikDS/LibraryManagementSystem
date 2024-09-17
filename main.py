@@ -3,8 +3,15 @@ from managers.user_manager import UserManager
 from managers.checkout_manager import CheckoutManager
 
 def main_menu():
-    string = "Library Management System"
-    print("\nLibrary Management System\n"+"="*len(string))
+    """
+    Display the main menu options and get user input.
+
+    Returns:
+        str: The user's choice from the menu options.
+    """
+    headline = "Library Management System"
+    print(f"\n{headline}\n{'=' * len(headline)}")
+
     print("1. Add User")
     print("2. Add Book")
     print("3. List Books")
@@ -16,6 +23,10 @@ def main_menu():
     return choice
 
 def main():
+    """
+    Main function to run the library management system.
+    Initializes managers and handles user choices in a loop.
+    """
     book_manager = BookManager()
     user_manager = UserManager()
     checkout_manager = CheckoutManager()
