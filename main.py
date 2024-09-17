@@ -1,0 +1,47 @@
+from managers.book_manager import BookManager
+from managers.user_manager import UserManager
+from managers.checkout_manager import CheckoutManager
+
+def main_menu():
+    string = "Library Management System"
+    print("\nLibrary Management System\n"+"="*len(string))
+    print("1. Add User")
+    print("2. Add Book")
+    print("3. List Books")
+    print("4. Checkout Book")
+    print("5. Check-in Book")
+    print("6. Exit \n")
+    choice = input("Enter choice: ")
+    print("\n")
+    return choice
+
+def main():
+    book_manager = BookManager()
+    user_manager = UserManager()
+    checkout_manager = CheckoutManager()
+
+    while True:
+        choice = main_menu()
+        if choice == '1':
+            user_manager.add_user()
+        elif choice == '2':
+            book_manager.add_book()
+        elif choice == '3':
+            book_manager.list_books()
+        elif choice == '4':
+            user_id = input("Enter user ID: ")
+            password = input("Enter password: ")
+            if user_manager.authenticate_user(user_id, password):
+                checkout_manager.checkout_book(user_id)
+            else:
+                print("Authentication failed. Check your user ID or password.")
+        elif choice == '5':
+            checkout_manager.checkin_book()
+        elif choice == '6':
+            print("Exiting.")
+            break
+        else:
+            print("Invalid choice, please try again.")
+
+if __name__ == "__main__":
+    main()
